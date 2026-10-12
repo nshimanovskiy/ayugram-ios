@@ -122,6 +122,10 @@ private func pushStoriesAreSeen(postbox: Postbox, network: Network, stateManager
     guard let inputPeer = apiInputPeer(peer) else {
         return .complete()
     }
+    // Ghost mode: stories stay seen locally, the author is not told.
+    if AyuGhostSettings.dontReadStories {
+        return .complete()
+    }
     return network.request(Api.functions.stories.readStories(peer: inputPeer, maxId: operation.storyId))
     |> `catch` { _ -> Signal<[Int32], NoError> in
         return .single([])

@@ -43,6 +43,8 @@ private final class AccountPresenceManagerImpl {
     }
     
     private func updatePresence(_ isOnline: Bool) {
+        // Ghost mode: report the account as offline even while the app is in use.
+        let isOnline = isOnline && !AyuGhostSettings.dontSendOnline
         let request: Signal<Api.Bool, MTRpcError>
         if isOnline {
             let timer = SignalKitTimer(timeout: 30.0, repeat: false, completion: { [weak self] in

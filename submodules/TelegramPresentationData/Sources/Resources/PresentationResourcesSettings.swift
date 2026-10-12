@@ -125,6 +125,7 @@ public struct PresentationResourcesSettings {
     public static let stickers = renderSettingsIcon(name: "Item List/Icons/Sticker", backgroundColors: [colorOrange])
     public static let notifications = renderSettingsIcon(name: "Item List/Icons/Notifications", backgroundColors: [colorRed])
     public static let security = renderSettingsIcon(name: "Item List/Icons/Privacy", backgroundColors: [colorGray])
+    public static let ayuGhostMode = renderSettingsIcon(name: "Item List/Icons/Privacy", backgroundColors: [colorViolet])
     public static let dataAndStorage = renderSettingsIcon(name: "Item List/Icons/Data", backgroundColors: [colorGreen])
     public static let appearance = renderSettingsIcon(name: "Item List/Icons/Appearance", backgroundColors: [colorLightBlue])
     public static let language = renderSettingsIcon(name: "Item List/Icons/Language", backgroundColors: [colorPurple])

@@ -462,6 +462,11 @@ private class ReplyThreadHistoryContextImpl {
 
             strongSelf.unreadCountValue = unreadCountValue
 
+            // Ghost mode: the thread counts as read locally only.
+            if AyuGhostSettings.dontReadMessages {
+                return
+            }
+
             if let state = strongSelf.stateValue {
                 if let indices = state.holeIndices[messageIndex.id.namespace] {
                     let fromIdInt: Int
