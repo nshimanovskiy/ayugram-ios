@@ -52,10 +52,17 @@ jobs:
         run: |
           CURRENT=$(xcode-select -p | sed 's#/Contents/Developer##')
           for app in /Applications/Xcode*.app; do
-            [ "$app" = "$CURRENT" ] || sudo rm -rf "$app" &
+            [ "$app" = "$CURRENT" ] || [ "$app" = /Applications/Xcode.app ] || sudo rm -rf "$app" &
           done
           sudo rm -rf "$HOME/Library/Android" /usr/local/share/dotnet "$HOME/.dotnet" &
           wait
+          # Some third-party build scripts (dav1d's iOS crossfile) hardcode
+          # /Applications/Xcode.app, so point it at the selected Xcode.
+          if [ "$CURRENT" != /Applications/Xcode.app ]; then
+            sudo rm -rf /Applications/Xcode.app
+            sudo ln -s "$CURRENT" /Applications/Xcode.app
+          fi
+          ls -la /Applications | grep -i xcode
           df -h /
 
       - name: Create canonical source directory
