@@ -22,6 +22,9 @@ The `Build unsigned IPA` GitHub Actions workflow builds an unsigned IPA on a mac
 
 1. Add the repository secrets `TELEGRAM_API_ID` and `TELEGRAM_API_HASH`
    (from https://my.telegram.org/apps) under Settings → Secrets and variables → Actions.
+   Without them the build uses the official Telegram iOS key from
+   `build-system/appstore-configuration.json`, which Telegram's API terms do not allow for
+   third-party clients; replace it with your own key when you can.
 2. Run the workflow from the Actions tab (Run workflow).
 3. Download the IPA from the run's artifacts.
 4. Install it with [Sideloadly](https://sideloadly.io) or [AltStore](https://altstore.io).
